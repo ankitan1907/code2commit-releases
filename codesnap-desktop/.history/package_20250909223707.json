@@ -1,0 +1,109 @@
+{
+  "name": "code2commit",
+  "version": "1.0.0",
+  "description": "Smart code snippet manager for competitive programmers - automatically commits solutions from LeetCode, HackerRank, and more to GitHub",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "build": "electron-builder",
+    "dist": "electron-builder --publish=never",
+    "dist:win": "electron-builder --win",
+    "dist:mac": "electron-builder --mac",
+    "dist:linux": "electron-builder --linux",
+    "pack": "electron-builder --dir",
+    "publish": "electron-builder --publish=always",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "electron",
+    "github",
+    "code-snippets",
+    "competitive-programming",
+    "leetcode",
+    "hackerrank",
+    "codechef",
+    "codeforces",
+    "geeksforgeeks"
+  ],
+  "author": "Code2Commit Team",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^22.0.0",
+    "electron-builder": "^24.13.3",
+    "electron-updater": "^6.1.1"
+  },
+  "dependencies": {
+    "axios": "^1.11.0",
+    "dotenv": "^16.6.1"
+  },
+  "build": {
+    "appId": "com.code2commit.app",
+    "productName": "Code2Commit",
+    "copyright": "Copyright © 2024 Code2Commit",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "popup.html",
+      "popup.js",
+      "popup.css",
+      "src/**/*",
+      "icons/**/*",
+      "package.json"
+    ],
+    "extraFiles": [
+      {
+        "from": ".env",
+        "to": ".env"
+      }
+    ],
+    "mac": {
+      "icon": "icons/icon.icns",
+      "category": "public.app-category.developer-tools",
+      "target": "dmg"
+    },
+    "win": {
+      "icon": "icons/icon.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64", "ia32"]
+        }
+      ],
+      "publisherName": "Code2Commit"
+    },
+    "linux": {
+      "icon": "icons/icon.png",
+      "target": "AppImage",
+      "category": "Development"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Code2Commit"
+    },
+    "protocols": [
+      {
+        "name": "code2commit",
+        "schemes": ["code2commit"]
+      }
+    ],
+    "publish": {
+      "provider": "github",
+      "owner": "yourusername",
+      "repo": "code2commit-releases"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/code2commit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/code2commit/issues"
+  },
+  "homepage": "https://github.com/yourusername/code2commit#readme"
+}

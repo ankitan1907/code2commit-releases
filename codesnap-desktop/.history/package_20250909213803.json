@@ -1,0 +1,80 @@
+{
+  
+"name": "code2commit",
+"version": "1.0.0",
+"description": "A code snippet manager that pushes code from competitive programming platforms to GitHub",
+"main": "main.js",
+"scripts": {
+"start": "electron .",
+"dev": "electron . --dev",
+"build": "electron-builder",
+"dist": "electron-builder --publish=never",
+"pack": "electron-builder --dir",
+"test": "echo \"Error: no test specified\" && exit 1"
+},
+"keywords": [
+ "github",
+ "code-snippets",
+ "competitive-programming",
+ "leetcode",
+ "hackerrank"
+],
+"author": "Ankita N",
+"license": "MIT",
+"devDependencies": {
+"electron": "^22.0.0",
+"electron-builder": "^24.13.3"
+},
+"dependencies": {
+"axios": "^1.11.0",
+"dotenv": "^16.6.1"
+},
+"build": {
+"appId": "com.ankita.code2commit",
+"productName": "Code2Commit",
+"directories": {
+ "output": "dist"
+ },
+"files": [
+  "main.js",
+  "src/**/*",
+  "icons/**/*",
+  "package.json",
+  "!node_modules/.cache"
+],
+"extraFiles": [
+  {
+    "from": ".env",
+    "to": "."
+  }
+],
+ "mac": {
+ "icon": "icons/icon.icns",
+ "category": "public.app-category.developer-tools"
+ },
+ "win": {
+ "icon": "icons/icon.ico",
+ "target": "nsis"
+ },
+ "linux": {
+ "icon": "icons/icon.png",
+ "target": "AppImage"
+ },
+ "protocols": [
+{
+ "name": "code2commit",
+ "schemes": [
+ "code2commit"
+ ]
+}
+ ]
+},
+"repository": {
+ "type": "git",
+"url": "https://github.com/yourusername/codesnap.git"
+},
+"bugs": {
+"url": "https://github.com/yourusername/codesnap/issues"
+},
+"homepage": "https://github.com/yourusername/codesnap#readme"
+}
