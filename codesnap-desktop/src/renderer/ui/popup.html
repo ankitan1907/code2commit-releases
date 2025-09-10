@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code2Commit - Smart Code Repository Manager</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-git-alt"></i>
+                <span>Code2Commit</span>
+            </div>
+            <div class="status">
+                <span class="status-dot" id="status-dot"></span>
+                <span id="status-text">Not Connected</span>
+            </div>
+        </header>
+
+        <div class="view-container">
+            <div class="view landing-view active" id="landing-view">
+                <div class="landing-content">
+                    <div class="logo-animation">
+                        <div class="logo-circle">
+                            <i class="fas fa-git-alt"></i>
+                        </div>
+                        <div class="logo-pulse"></div>
+                    </div>
+                    <h1 class="landing-title">Code2Commit</h1>
+                    <p class="landing-tagline">Your smart coding companion that commits solutions intelligently</p>
+                    <div class="loading-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="view welcome-view" id="welcome-view">
+                <div class="welcome-content">
+                    <div class="hero">
+                        <div class="hero-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h1>Welcome to Code2Commit</h1>
+                        <p>Transform your competitive programming workflow with intelligent code management and smart Git commits</p>
+                    </div>
+
+                    <div class="features">
+                        <div class="feature-card glass-effect" data-delay="0">
+                            <div class="feature-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <h3>Smart Problem Detection</h3>
+                            <p>Automatically detects problems from LeetCode, GeeksforGeeks, HackerRank, and CodeChef</p>
+                        </div>
+                        <div class="feature-card glass-effect" data-delay="100">
+                            <div class="feature-icon">
+                                <i class="fas fa-keyboard"></i>
+                            </div>
+                            <h3>Lightning Fast Commits</h3>
+                            <p>Press <kbd>Ctrl + Shift + V</kbd> anywhere to commit solutions with meaningful messages</p>
+                        </div>
+                        <div class="feature-card glass-effect" data-delay="200">
+                            <div class="feature-icon">
+                                <i class="fab fa-github"></i>
+                            </div>
+                            <h3>Intelligent Organization</h3>
+                            <p>Auto-generates file paths and commit messages based on problem platform and difficulty</p>
+                        </div>
+                    </div>
+
+                    <div class="welcome-actions">
+                        <button class="btn btn-primary btn-large pulse" id="get-started-btn">
+                            <i class="fas fa-rocket"></i> Get Started
+                        </button>
+                        <button class="btn btn-secondary how-it-works-btn" id="how-it-works-btn">
+                            <i class="fas fa-question-circle"></i> How it Works
+                            <i class="fas fa-arrow-right arrow-animate"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-overlay how-it-works-modal" id="how-it-works-modal">
+                <div class="modal how-it-works-content">
+                    <div class="modal-header">
+                        <h2><i class="fas fa-graduation-cap"></i> How Code2Commit Works</h2>
+                        <button class="modal-close" id="how-it-works-close">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="how-it-works-steps">
+                            <div class="step-card" data-step="1">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h3>Background Operation</h3>
+                                    <p>Code2Commit runs silently in the background, always ready to capture your coding solutions without interrupting your workflow.</p>
+                                    <div class="step-visual">
+                                        <div class="background-indicator">
+                                            <i class="fas fa-cog spinning"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="step-card" data-step="2">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h3>Solve on Any Platform</h3>
+                                    <p>Code on your favorite competitive programming platforms like LeetCode, HackerRank, or CodeChef.</p>
+                                    <div class="platform-icons">
+                                        <span class="platform-badge">LeetCode</span>
+                                        <span class="platform-badge">HackerRank</span>
+                                        <span class="platform-badge">CodeChef</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="step-card highlighted" data-step="3">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h3>Magic Shortcut</h3>
+                                    <p>Copy your solution and press the magic combination anywhere on your computer:</p>
+                                    <div class="shortcut-display">
+                                        <div class="key">Ctrl</div>
+                                        <span class="plus">+</span>
+                                        <div class="key">Shift</div>
+                                        <span class="plus">+</span>
+                                        <div class="key">V</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="step-card" data-step="4">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h3>Smart Git Commits</h3>
+                                    <p>Code2Commit intelligently detects the language, suggests filenames, and commits your code with meaningful messages.</p>
+                                    <div class="github-visual">
+                                        <i class="fab fa-github"></i>
+                                        <span class="commit-message">"Solve two sum on LeetCode"</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary btn-large" id="understood-btn">
+                            <i class="fas fa-check"></i> Got it! Let's Setup
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="view auth-view" id="auth-view">
+                <div class="auth-content">
+                    <div class="auth-card glass-effect">
+                        <div class="auth-icon">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <h2>Connect to GitHub</h2>
+                        <p>Authenticate securely with GitHub to start committing your coding solutions intelligently</p>
+
+                        <div class="auth-steps">
+                            <div class="step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>Secure OAuth</h4>
+                                    <p>We'll open GitHub's official authentication page</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>Repository Access</h4>
+                                    <p>Grant permission to commit code to your repositories</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>Start Committing</h4>
+                                    <p>Use Ctrl+Shift+V anywhere to commit code with smart messages</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="auth-button pulse" id="auth-button">
+                            <i class="fab fa-github"></i> Connect GitHub Account
+                        </button>
+
+                        <div class="auth-info">
+                            <p>
+                                <i class="fas fa-shield-alt"></i>
+                                Your credentials are never stored. We use GitHub's secure OAuth system.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="view success-view" id="success-view">
+                <div class="success-content">
+                    <div class="success-card glass-effect">
+                        <div class="success-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h1>Authentication Successful!</h1>
+                        <p>Your GitHub account is now connected. Redirecting to your dashboard...</p>
+                        <div class="success-loader">
+                            <div class="success-progress"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="view main-view" id="main-view">
+                <div class="main-content">
+                    <div class="user-profile glass-effect">
+                        <div class="profile-avatar">
+                            <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" 
+                                class="avatar" id="user-avatar" alt="User Avatar">
+                            <div class="avatar-status"></div>
+                        </div>
+                        <div class="user-info">
+                            <div class="username gradient-text" id="username">GitHub User</div>
+                        </div>
+                        <div class="profile-actions">
+                            <button class="btn btn-icon" id="refresh-profile" title="Refresh Profile">
+                                <i class="fas fa-sync-alt"></i>
+                            </button>
+                            <button class="btn btn-secondary" id="logout-btn">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-card glass-effect">
+                            <div class="stat-icon">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-number" id="snippets-count">0</span>
+                                <span class="stat-label">Solutions Committed</span>
+                            </div>
+                        </div>
+                        <div class="stat-card glass-effect">
+                            <div class="stat-icon">
+                                <i class="fas fa-folder"></i>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-number" id="repos-count">0</span>
+                                <span class="stat-label">Repositories</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-status glass-effect">
+                        <div class="bg-indicator">
+                            <div class="bg-pulse"></div>
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="bg-info">
+                            <h4>Smart Commit Ready</h4>
+                            <p>Press <kbd>Ctrl + Shift + V</kbd> anywhere to commit solutions with intelligent organization</p>
+                        </div>
+                    </div>
+
+                    <div class="section glass-effect">
+                        <h3><i class="fas fa-folder-open"></i> Default Repository</h3>
+                        <div class="repo-selector">
+                            <select id="repo-select" class="form-select">
+                                <option value="">Loading repositories...</option>
+                            </select>
+                            <button class="btn btn-icon" id="refresh-repos" title="Refresh Repositories">
+                                <i class="fas fa-sync-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="section glass-effect">
+                        <h3><i class="fas fa-bolt"></i> Quick Actions</h3>
+                        <div class="quick-actions">
+                            <button class="btn btn-primary" id="open-modal-btn">
+                                <i class="fas fa-plus"></i> Commit Code Manually
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="section glass-effect">
+                        <h3><i class="fas fa-history"></i> Activity Log</h3>
+                        <div class="status-log" id="status-log">
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay save-modal" id="save-modal">
+        <div class="modal save-modal-content">
+            <div class="modal-header">
+                <div class="modal-title">
+                    <i class="fas fa-git-alt"></i> Smart Commit to GitHub
+                </div>
+                <button class="modal-close" id="modal-close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="platform-indicator" id="platform-indicator" style="display: none;">
+                    <i class="platform-icon" id="platform-icon"></i>
+                    <span id="platform-text">Detected platform</span>
+                </div>
+
+                <form id="save-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="repo-select-modal" class="form-label">
+                                <i class="fas fa-folder"></i> Repository
+                            </label>
+                            <select id="repo-select-modal" class="form-select" required>
+                                <option value="">Select a repository...</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="file-path" class="form-label">
+                                <i class="fas fa-file-code"></i> File Path
+                            </label>
+                            <input type="text" id="file-path" class="form-input" required
+                                placeholder="e.g., leetcode/easy/two-sum.py">
+                            <div class="smart-suggestion" id="path-suggestion" style="display: none;">
+                                Smart suggestion based on detected problem
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="commit-message" class="form-label">
+                            <i class="fas fa-comment"></i> Commit Message
+                        </label>
+                        <input type="text" id="commit-message" class="form-input" required
+                               placeholder="e.g., Solve two sum on LeetCode">
+                        <div class="smart-suggestion" id="message-suggestion" style="display: none;">
+                            Auto-generated based on problem detection
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="code-content" class="form-label">
+                            <i class="fas fa-code"></i> Solution Code
+                        </label>
+                        <textarea id="code-content" class="code-editor" rows="15" required
+                                  placeholder="Paste your solution code here...
+
+// The smart detection will analyze your code to:
+// 1. Identify the coding platform (LeetCode, GeeksforGeeks, etc.)
+// 2. Extract the problem name and difficulty
+// 3. Generate appropriate file paths and commit messages
+// 4. Organize your solutions intelligently"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="cancel-btn">
+                    <i class="fas fa-times"></i> Cancel
+                </button>
+                <button type="submit" form="save-form" class="btn btn-primary" id="save-btn">
+                    <i class="fas fa-save"></i> Save to GitHub
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay success-save-modal" id="success-save-modal">
+        <div class="modal success-modal-content">
+            <div class="success-animation">
+                <div class="checkmark-circle">
+                    <i class="fas fa-check"></i>
+                </div>
+            </div>
+            <h2>Code Saved Successfully!</h2>
+            <p id="save-success-message">Your code has been committed to GitHub</p>
+            <button class="btn btn-primary" id="success-close-btn">
+                <i class="fas fa-check"></i> Great!
+            </button>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>
